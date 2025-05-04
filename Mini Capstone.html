@@ -6,7 +6,7 @@
 -->
 <html>
 <head>
-	<title>No Sidebar - Arcana by HTML5 UP</title>
+	<title>Kaylen Cowan's Portfolio</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -55,38 +55,40 @@
 
 					<article>
 						<header>
-							<h2>Mini Capstone</h2>
-							<p>All content, all the time.</p>
+							<h2>Mini Capstone (Team Name: 6 Guys)</h2>
+							<p>Game: Deep Diver</p>
 						</header>
 
 						<span class="image featured"><img src="images/Chat App.png" alt="" /></span>
 
+						<h3>Game Summary</h3>
 						<p>
-							Phasellus quam turpis, feugiat sit amet ornare in, hendrerit in lectus.
-							Praesent semper mod quis eget mi. Etiam eu ante risus. Aliquam erat volutpat.
-							Aliquam luctus et mattis lectus sit amet pulvinar. Nam turpis nisi
-							consequat etiam lorem ipsum dolor sit amet nullam.
+							Deep Diver is a single-player, 3D, first-person, underwater, horror game with light management,
+							created by a team of 6 artists and programmers using the Unreal Engine. The gameplay involves 
+							the player being sent on a suicide mission deep underwater to collect fish and complete tasks 
+							while only being given a flashlight that is used to attract fish and see but exposes you to a 
+							monster lurking in the dark.
 						</p>
 
-						<h3>And Yet Another Subheading</h3>
+						<h3>What I Did</h3>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac quam risus, at tempus
-							justo. Sed dictum rutrum massa eu volutpat. Quisque vitae hendrerit sem. Pellentesque lorem felis,
-							ultricies a bibendum id, bibendum sit amet nisl. Mauris et lorem quam. Maecenas rutrum imperdiet
-							vulputate. Nulla quis nibh ipsum, sed egestas justo. Morbi ut ante mattis orci convallis tempor.
-							Etiam a lacus a lacus pharetra porttitor quis accumsan odio. Sed vel euismod nisi. Etiam convallis
-							rhoncus dui quis euismod. Maecenas lorem tellus, congue et condimentum ac, ullamcorper non sapien.
-							Donec sagittis massa et leo semper a scelerisque metus faucibus. Morbi congue mattis mi.
-							Phasellus sed nisl vitae risus tristique volutpat. Cras rutrum commodo luctus.
+							I was one of the programmers and the idea lead for the team. I created and designed the in-game
+							mission system, the player's interact controls, the map, and the underwater effect. I also made 
+							the idea for the game and most of the concepts for features.
 						</p>
 
 						<p>
-							Phasellus odio risus, faucibus et viverra vitae, eleifend ac purus. Praesent mattis, enim
-							quis hendrerit porttitor, sapien tortor viverra magna, sit amet rhoncus nisl lacus nec arcu.
-							Suspendisse laoreet metus ut metus imperdiet interdum aliquam justo tincidunt. Mauris dolor urna,
-							fringilla vel malesuada ac, dignissim eu mi. Praesent mollis massa ac nulla pretium pretium.
-							Maecenas tortor mauris, consectetur pellentesque dapibus eget, tincidunt vitae arcu.
-							Vestibulum purus augue, tincidunt sit amet iaculis id, porta eu purus.
+							The in-game mission system is made of 3 main components: the mission handler, a mission spot, 
+							and a mission type. The missions are randomized to add replayability, so I created the mission 
+							handler to deal with it. It takes in a vector of mission spots and tells a certain amount of 
+							them to randomly activate and become full missions; all other mission spots are then marked 
+							inactive. The handler also keeps track of how many missions are still active. A mission spot 
+							allows me to control the randomization of the mission to certain locations; the mission spot 
+							is then placed there in the world. When the handler calls the spot, the mission spot will randomly 
+							choose a mission type to spawn on itself. These mission types can either be a repair mission, 
+							an artifact mission, or a fish collection mission, and when spawned, it will also spawn any 
+							necessary actors, props, or AI it needs. When the mission is completed by the player, it then 
+							alerts the mission handler.
 						</p>
 					</article>
 
