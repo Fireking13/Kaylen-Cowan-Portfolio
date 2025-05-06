@@ -3383,3 +3383,61 @@ a {
 			}
 
 	}
+
+.slideshow-container {
+	position: relative;
+	max-width: 100%;
+	aspect-ratio: 16 / 9; /* optional: keeps all slides a consistent shape */
+	overflow: hidden;
+}
+
+.slide {
+	display: none;
+	width: 100%;
+}
+
+	.slide img {
+		width: 100%;
+		display: block;
+	}
+
+	.slide video {
+		width: 100%;
+		display: block;
+		object-fit: cover; /* optional: helps maintain clean cropping if aspect ratios vary */
+	}
+
+.hover-left,
+.hover-right {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 25%;
+	cursor: pointer;
+	z-index: 2;
+	color: white;
+	font-size: 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+	.hover-left:hover,
+	.hover-right:hover {
+		background-color: rgba(0, 0, 0, 0.3);
+		opacity: 1;
+	}
+
+.hover-left {
+	left: 0;
+	justify-content: flex-start;
+	padding-left: 20px;
+}
+
+.hover-right {
+	right: 0;
+	justify-content: flex-end;
+	padding-right: 20px;
+}

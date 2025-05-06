@@ -59,35 +59,57 @@
 							<p>Game: Deep Diver</p>
 						</header>
 
-						<span class="image featured"><img src="images/Chat App.png" alt="" /></span>
+						<div class="slideshow-container">
+							<div class="slide" style="display:block;"><img src="images/DeepDivers (1).png" alt="Chat App 1" /></div>
+							<div class="slide"><img src="images/DeepDivers (2).png" alt="Chat App 2" /></div>
+							<div class="slide"><img src="images/DeepDivers (3).png" alt="Chat App 3" /></div>
+							<div class="slide"><img src="images/DeepDivers (4).png" alt="Chat App 4" /></div>
+							<div class="slide"><img src="images/DeepDivers (5).png" alt="Chat App 5" /></div>
+
+							<div class="hover-left" onclick="changeSlide(-1)">&#10094;</div>
+							<div class="hover-right" onclick="changeSlide(1)">&#10095;</div>
+						</div>
+
+						<script>
+							let slideIndex = 0;
+							const slides = document.querySelectorAll(".slide");
+
+							function changeSlide(n) {
+								slides[slideIndex].style.display = "none";
+								slideIndex = (slideIndex + n + slides.length) % slides.length;
+								slides[slideIndex].style.display = "block";
+							}
+						</script>
+
+						<h3>&nbsp;</h3>
 
 						<h3>Game Summary</h3>
 						<p>
 							Deep Diver is a single-player, 3D, first-person, underwater, horror game with light management,
-							created by a team of 6 artists and programmers using the Unreal Engine. The gameplay involves 
-							the player being sent on a suicide mission deep underwater to collect fish and complete tasks 
-							while only being given a flashlight that is used to attract fish and see but exposes you to a 
+							created by a team of 6 artists and programmers using the Unreal Engine. The gameplay involves
+							the player being sent on a suicide mission deep underwater to collect fish and complete tasks
+							while only being given a flashlight that is used to attract fish and see but exposes you to a
 							monster lurking in the dark.
 						</p>
 
 						<h3>What I Did</h3>
 						<p>
 							I was one of the programmers and the idea lead for the team. I created and designed the in-game
-							mission system, the player's interact controls, the map, and the underwater effect. I also made 
+							mission system, the player's interact controls, the map, and the underwater effect. I also made
 							the idea for the game and most of the concepts for features.
 						</p>
 
 						<p>
-							The in-game mission system is made of 3 main components: the mission handler, a mission spot, 
-							and a mission type. The missions are randomized to add replayability, so I created the mission 
-							handler to deal with it. It takes in a vector of mission spots and tells a certain amount of 
-							them to randomly activate and become full missions; all other mission spots are then marked 
-							inactive. The handler also keeps track of how many missions are still active. A mission spot 
-							allows me to control the randomization of the mission to certain locations; the mission spot 
-							is then placed there in the world. When the handler calls the spot, the mission spot will randomly 
-							choose a mission type to spawn on itself. These mission types can either be a repair mission, 
-							an artifact mission, or a fish collection mission, and when spawned, it will also spawn any 
-							necessary actors, props, or AI it needs. When the mission is completed by the player, it then 
+							The in-game mission system is made of 3 main components: the mission handler, a mission spot,
+							and a mission type. The missions are randomized to add replayability, so I created the mission
+							handler to deal with it. It takes in a vector of mission spots and tells a certain amount of
+							them to randomly activate and become full missions; all other mission spots are then marked
+							inactive. The handler also keeps track of how many missions are still active. A mission spot
+							allows me to control the randomization of the mission to certain locations; the mission spot
+							is then placed there in the world. When the handler calls the spot, the mission spot will randomly
+							choose a mission type to spawn on itself. These mission types can either be a repair mission,
+							an artifact mission, or a fish collection mission, and when spawned, it will also spawn any
+							necessary actors, props, or AI it needs. When the mission is completed by the player, it then
 							alerts the mission handler.
 						</p>
 					</article>
