@@ -20,7 +20,7 @@
 				<!-- Nav -->
 				<nav id="nav">
 					<ul>
-						<li><a href="index.html">Home</a></li>
+						<li><a href="Home.html">Home</a></li>
 						<li>
 							<a href="#">C++ Work</a>
 							<ul>
@@ -31,15 +31,15 @@
 									<a href="#">Smaller C++ Projects</a>
 									<ul>
 										<li><a href="Asteroids.html">Asteroids Clone</a></li>
-										<li><a href="no-sidebar.html">Multi-Threaded Chat App</a></li>
+										<li><a href="Multithreading.html">Multi-Threaded Chat App</a></li>
 									</ul>
 								</li>
 							</ul>
 						</li>
-						<li><a href="left-sidebar.html">C# Work</a></li>
-						<li><a href="right-sidebar.html">3D Models</a></li>
-						<li><a href="two-sidebar.html">Personal Projects</a></li>
-						<li class="current"><a href="no-sidebar.html">Multithreading</a></li>
+						<li><a href="CSharpWork.html">C# Work</a></li>
+						<li><a href="3D Models.html">3D Models</a></li>
+						<li class="current"><a href="Personal Projects.html">Personal Projects</a></li>
+						<li><a href="Multithreading.html">Multithreading</a></li>
 					</ul>
 				</nav>
 
@@ -54,25 +54,49 @@
 
 						<article>
 							<header>
-								<h2>Multithreading</h2>
-								<p>Multi-Threaded Chat App (School Project)</p>
+								<h2>Personal Projects</h2>
+								<p>Game: Nature Wars (WIP)</p>
 							</header>
 
-							<span class="image featured"><img src="images/Chat App.png" alt="" /></span>
+							<div class="slideshow-container">
+								<div class="slide" style="display:block;"><img src="images/PineGun.png" alt="Chat App 1" /></div>
+								<div class="slide"><img src="images/Acorn luncher.png" alt="Chat App 2" /></div>
+								<div class="slide"><img src="images/cracker seed.png" alt="Chat App 3" /></div>
+								<div class="slide"><img src="images/cracker seed open.png" alt="Chat App 4" /></div>
+								<div class="slide"><img src="images/Acorn.png" alt="Chat App 5" /></div>
 
-							<h3>Project Summary</h3>
+								<div class="hover-left" onclick="changeSlide(-1)">&#10094;</div>
+								<div class="hover-right" onclick="changeSlide(1)">&#10095;</div>
+							</div>
+
+							<script>
+								let slideIndex = 0;
+								const slides = document.querySelectorAll(".slide");
+
+								function changeSlide(n) {
+									slides[slideIndex].style.display = "none";
+									slideIndex = (slideIndex + n + slides.length) % slides.length;
+									slides[slideIndex].style.display = "block";
+								}
+							</script>
+
+							<h3>&nbsp;</h3>
+
+							<h3>Game Summary</h3>
 							<p>
-								This is a multi-threaded, multi-cased, and non-multiplexing chat app. It is 
-								built using WinSock2 in C++ and is made up of a server and multiple clients. 
-								The server listens for new client connections and spawns a dedicated thread for 
-								each one, allowing multiple users to chat in a shared room. When a client joins, 
-								they're prompted to enter a name, which is sent to the server and used as an 
-								identifier. Messages typed by users are broadcasted to all other connected 
-								clients. The communication is blocking and single-threaded on the main loop 
-								but uses additional threads to handle sending and receiving messages. The 
-								server identifies clients by their IP and tags their messages accordingly. 
-								Clients can exit by typing "quit", and the server continues to run until 
-								manually stopped.
+								Nature Wars is a small multi-player, 3D, first-person shooter that is set in a forest where all
+								weapons are based on real plants found in a natural forest. It is a solo project made on Unreal
+								Engine 5, and coded in C++. All models and assets were made by me.
+							</p>
+
+							<h3>What I Did</h3>
+							<p>
+								Currently, the project is still under development but I have created and textured a few weapon
+								and bullet models, including all gun types, as well as programmed some base networking. The
+								models were made in 3DS Max. The current models made are the acorn launcher, pine needle machine
+								gun, cracker plant shotgun, all guns bullets, and the health pickup. On the code side, I created
+								the base code for shorting players into 2 different teams when they join and colour-coating them
+								respectively.
 							</p>
 
 						</article>
