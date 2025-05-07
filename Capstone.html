@@ -31,7 +31,6 @@
 									<a href="#">Smaller C++ Projects</a>
 									<ul>
 										<li><a href="Asteroids.html">Asteroids Clone</a></li>
-										<li><a href="Brick Breaker.html">Brick Breaker Clone</a></li>
 										<li><a href="no-sidebar.html">Multi-Threaded Chat App</a></li>
 									</ul>
 								</li>
@@ -59,7 +58,99 @@
 								<p>Game: Ichor Burns</p>
 							</header>
 
-							<span class="image featured"><img src="images/Chat App.png" alt="" /></span>
+							<div class="slideshow-container">
+								<div class="slide" style="display:block;">
+									<video width="100%" controls>
+										<source src="images/Ichor Burns/IchorBurnsTrailer.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+								<div class="slide">
+									<video width="100%" controls>
+										<source src="images/Ichor Burns/IchorBurnsTrailer_CN.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+								<div class="slide">
+									<video width="100%" controls>
+										<source src="images/Ichor Burns/IchorBurns_SpellShowcase.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+								<div class="slide">
+									<video width="100%" controls>
+										<source src="images/Ichor Burns/IchorBurns_StarchaserVA_EN.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+								<div class="slide">
+									<video width="100%" controls>
+										<source src="images/Ichor Burns/IchorBurns_StarchaserVA_CN.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+								<div class="slide">
+									<video width="100%" controls>
+										<source src="images/Ichor Burns/IchorBurns_SerafinaVA_EN.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+								<div class="slide">
+									<video width="100%" controls>
+										<source src="images/Ichor Burns/IchorBurns_SerafinaVA_CN.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+								<div class="slide"><img src="images/Ichor Burns/Gameplay.png" alt="Chat App 1" /></div>
+								<div class="slide"><img src="images/Ichor Burns/SEQ_Berserk.0060.png" alt="Chat App 2" /></div>
+								<div class="slide"><img src="images/Ichor Burns/image1.png" alt="Chat App 2" /></div>
+								<div class="slide"><img src="images/Ichor Burns/image2.png" alt="Chat App 3" /></div>
+								<div class="slide"><img src="images/Ichor Burns/image3.png" alt="Chat App 4" /></div>
+								<div class="slide"><img src="images/Ichor Burns/image4.png" alt="Chat App 5" /></div>
+								<div class="slide"><img src="images/Ichor Burns/SEQ_Zone1Exposition.0020.png" alt="Chat App 6" /></div>
+
+								<div class="hover-left" onclick="changeSlide(-1)">&#10094;</div>
+								<div class="hover-right" onclick="changeSlide(1)">&#10095;</div>
+							</div>
+
+							<script>
+								let slideIndex = 0;
+								const slides = document.querySelectorAll(".slide");
+
+								function changeSlide(n) {
+									// Pause video in the current slide, if any
+									const currentVideo = slides[slideIndex].querySelector("video");
+									if (currentVideo) {
+										currentVideo.pause();
+									}
+
+									// Hide the current slide
+									slides[slideIndex].style.display = "none";
+
+									// Calculate new slide index
+									slideIndex = (slideIndex + n + slides.length) % slides.length;
+
+									// Show the new slide
+									slides[slideIndex].style.display = "block";
+
+									// Play video in the new slide, if any
+									const newVideo = slides[slideIndex].querySelector("video");
+									if (newVideo) {
+										newVideo.play();
+									}
+								}
+
+								// Initialize the first slide on page load
+								document.addEventListener("DOMContentLoaded", () => {
+									slides[slideIndex].style.display = "block";
+									const firstVideo = slides[slideIndex].querySelector("video");
+									if (firstVideo) {
+										firstVideo.play();
+									}
+								});
+							</script>
+
+							<h3>&nbsp;</h3>
 
 							<h3>Game Summary</h3>
 							<p>
@@ -69,6 +160,7 @@
 								inspired by Genshin Impact. The game is designed around player freedom, with each spell
 								catering to different playstyles and a huge and customizable accessibility setting system.
 								Ichor Burns is also the first place winner at Level Up Showcase 2025 in Toronto for accessibility.
+								The game is published on Steam and can be found <a href="https://store.steampowered.com/app/3651600/Ichor_Burns/" target="_blank">here</a>.
 							</p>
 
 							<h3>What I Did</h3>
@@ -86,17 +178,17 @@
 							</p>
 
 							<p>
-								The enemies were split between me and another teammate. I created many of the services and decorators 
-								that are used in the behaviour trees, as well as fully created the carrier enemy behaviour tree. 
-								I also majorly changed the melee and ranged enemies' behaviour trees to better interact with the 
-								player. Furthermore, I created and designed all 5 enemies' EQS systems that they use to more dynamically 
+								The enemies were split between me and another teammate. I created many of the services and decorators
+								that are used in the behaviour trees, as well as fully created the carrier enemy behaviour tree.
+								I also majorly changed the melee and ranged enemies' behaviour trees to better interact with the
+								player. Furthermore, I created and designed all 5 enemies' EQS systems that they use to more dynamically
 								move around the world.
 							</p>
 
 							<p>
-								The accessibility settings were also split between me and another teammate. I was responsible 
-								for the creation and imputation of the graphic settings, colour blind modes, and the inverted 
-								scroll wheel option. This was mostly done with Unreal blueprints. I also performed extensive 
+								The accessibility settings were also split between me and another teammate. I was responsible
+								for the creation and imputation of the graphic settings, colour blind modes, and the inverted
+								scroll wheel option. This was mostly done with Unreal blueprints. I also performed extensive
 								testing for the colour blind modes, graphic setting edge cases, and localization.
 							</p>
 						</article>
@@ -113,7 +205,7 @@
 						<ul class="links">
 							<li>Email: kaylencowan.dev@gmail.com</li>
 							<li>Phone#: +1(613) - 297 - 1110</li>
-							<li>Address: Ottawa, ON, K2C 2T7</li>
+							<li>Address: Ottawa, ON, K2C 1G5</li>
 						</ul>
 					</div>
 				</div>

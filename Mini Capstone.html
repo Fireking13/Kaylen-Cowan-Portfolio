@@ -31,7 +31,6 @@
 								<a href="#">Smaller C++ Projects</a>
 								<ul>
 									<li><a href="Asteroids.html">Asteroids Clone</a></li>
-									<li><a href="Brick Breaker.html">Brick Breaker Clone</a></li>
 									<li><a href="no-sidebar.html">Multi-Threaded Chat App</a></li>
 								</ul>
 							</li>
@@ -60,7 +59,19 @@
 						</header>
 
 						<div class="slideshow-container">
-							<div class="slide" style="display:block;"><img src="images/DeepDivers (1).png" alt="Chat App 1" /></div>
+							<div class="slide" style="display:block;">
+								<video width="100%" controls>
+									<source src="images/DeepDiverVideo1.mp4" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>
+							</div>
+							<div class="slide">
+								<video width="100%" controls>
+									<source src="images/DeepDiverVideo2.mp4" type="video/mp4">
+									Your browser does not support the video tag.
+								</video>
+							</div>
+							<div class="slide"><img src="images/DeepDivers (1).png" alt="Chat App 2" /></div>
 							<div class="slide"><img src="images/DeepDivers (2).png" alt="Chat App 2" /></div>
 							<div class="slide"><img src="images/DeepDivers (3).png" alt="Chat App 3" /></div>
 							<div class="slide"><img src="images/DeepDivers (4).png" alt="Chat App 4" /></div>
@@ -75,10 +86,36 @@
 							const slides = document.querySelectorAll(".slide");
 
 							function changeSlide(n) {
+								// Pause video in the current slide, if any
+								const currentVideo = slides[slideIndex].querySelector("video");
+								if (currentVideo) {
+									currentVideo.pause();
+								}
+
+								// Hide the current slide
 								slides[slideIndex].style.display = "none";
+
+								// Calculate new slide index
 								slideIndex = (slideIndex + n + slides.length) % slides.length;
+
+								// Show the new slide
 								slides[slideIndex].style.display = "block";
+
+								// Play video in the new slide, if any
+								const newVideo = slides[slideIndex].querySelector("video");
+								if (newVideo) {
+									newVideo.play();
+								}
 							}
+
+							// Initialize the first slide on page load
+							document.addEventListener("DOMContentLoaded", () => {
+								slides[slideIndex].style.display = "block";
+								const firstVideo = slides[slideIndex].querySelector("video");
+								if (firstVideo) {
+									firstVideo.play();
+								}
+							});
 						</script>
 
 						<h3>&nbsp;</h3>
@@ -126,7 +163,7 @@
 					<ul class="links">
 						<li>Email: kaylencowan.dev@gmail.com</li>
 						<li>Phone#: +1(613) - 297 - 1110</li>
-						<li>Address: Ottawa, ON, K2C 2T7</li>
+						<li>Address: Ottawa, ON, K2C 1G5</li>
 					</ul>
 				</div>
 			</div>

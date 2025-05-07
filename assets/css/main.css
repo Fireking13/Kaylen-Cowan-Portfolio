@@ -2689,14 +2689,14 @@ a {
 
 /* Banner */
 
-	#banner {
-		background-image: url("../../images/banner.jpg");
-		background-position: center center;
-		background-size: cover;
-		height: 28em;
-		text-align: center;
-		position: relative;
-	}
+#banner {
+	background-image: url("../../images/BackGroundNew.png");
+	background-position: center center;
+	background-size: cover;
+	height: 28em;
+	text-align: center;
+	position: relative;
+}
 
 		#banner header {
 			position: absolute;
@@ -3410,9 +3410,9 @@ a {
 .hover-left,
 .hover-right {
 	position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 25%;
+	top: 20%;
+	bottom: 20%; /* reduces height from full to 60% */
+	width: 10%;
 	cursor: pointer;
 	z-index: 2;
 	color: white;
@@ -3420,24 +3420,27 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	opacity: 0;
-	transition: opacity 0.3s;
+	transition: background-color 0.3s, opacity 0.3s;
+	border-radius: 0 100px 100px 0; /* left half-circle */
+	pointer-events: auto;
+	opacity: 1;
 }
-
-	.hover-left:hover,
-	.hover-right:hover {
-		background-color: rgba(0, 0, 0, 0.3);
-		opacity: 1;
-	}
 
 .hover-left {
 	left: 0;
 	justify-content: flex-start;
 	padding-left: 20px;
+	border-radius: 0 100px 100px 0;
 }
 
 .hover-right {
 	right: 0;
 	justify-content: flex-end;
 	padding-right: 20px;
+	border-radius: 100px 0 0 100px;
 }
+
+	.hover-left:hover,
+	.hover-right:hover {
+		background-color: rgba(0, 0, 0, 0.4); /* darker on hover */
+	}

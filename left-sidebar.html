@@ -31,7 +31,6 @@
 									<a href="#">Smaller C++ Projects</a>
 									<ul>
 										<li><a href="Asteroids.html">Asteroids Clone</a></li>
-										<li><a href="Brick Breaker.html">Brick Breaker Clone</a></li>
 										<li><a href="no-sidebar.html">Multi-Threaded Chat App</a></li>
 									</ul>
 								</li>
@@ -59,21 +58,88 @@
 								<p>School Projects and Tests</p>
 							</header>
 
-							<span class="image featured"><img src="images/Chat App.png" alt="" /></span>
+							<div class="slideshow-container">
+								<div class="slide" style="display:block;">
+									<video width="100%" controls>
+										<source src="images/Water.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+								<div class="slide">
+									<video width="100%" controls>
+										<source src="images/Turret.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+								<div class="slide">
+									<video width="100%" controls>
+										<source src="images/Cube.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+								<div class="slide">
+									<video width="100%" controls>
+										<source src="images/Tanks.mp4" type="video/mp4">
+										Your browser does not support the video tag.
+									</video>
+								</div>
+
+								<div class="hover-left" onclick="changeSlide(-1)">&#10094;</div>
+								<div class="hover-right" onclick="changeSlide(1)">&#10095;</div>
+							</div>
+
+							<script>
+								let slideIndex = 0;
+								const slides = document.querySelectorAll(".slide");
+
+								function changeSlide(n) {
+									// Pause video in the current slide, if any
+									const currentVideo = slides[slideIndex].querySelector("video");
+									if (currentVideo) {
+										currentVideo.pause();
+									}
+
+									// Hide the current slide
+									slides[slideIndex].style.display = "none";
+
+									// Calculate new slide index
+									slideIndex = (slideIndex + n + slides.length) % slides.length;
+
+									// Show the new slide
+									slides[slideIndex].style.display = "block";
+
+									// Play video in the new slide, if any
+									const newVideo = slides[slideIndex].querySelector("video");
+									if (newVideo) {
+										newVideo.play();
+									}
+								}
+
+								// Initialize the first slide on page load
+								document.addEventListener("DOMContentLoaded", () => {
+									slides[slideIndex].style.display = "block";
+									const firstVideo = slides[slideIndex].querySelector("video");
+									if (firstVideo) {
+										firstVideo.play();
+									}
+								});
+							</script>
+
+							<h3>&nbsp;</h3>
 
 							<h3>Summary</h3>
 							<p>
-								The photos and videos above are a collection of school projects and tests all done inside 
-								the Unity game engine and programmed in C#. The projects and tests include buoyancy physics 
-								in water, object pooling with a working turret, proper camera movement, AI that shoots targets, 
+								The photos and videos above are a collection of school projects and tests all done inside
+								the Unity game engine and programmed in C#. The projects and tests include buoyancy physics
+								in water, object pooling with a working turret, proper camera movement, AI that shoots targets,
 								and boids.
 							</p>
 
 							<p>
-								The first 3 in the slideshow are tests, the others are school projects. The tests were all done 
-								in under 3 hours and were meant to replicate technical tests in job interviews, they were all done 
-								from scratch with no starting code besides the water physics test where the water object was already 
-								created but with no effect. The projects were assignments around behaviour tree AIs and algorithms 
+								The first 3 in the slideshow are tests, the others are school projects. The tests were all done
+								in under 3 hours and were meant to replicate technical tests in job interviews, they were all done
+								from scratch with no starting code besides the water physics test where the water object was already
+								created but with no effect. The projects were assignments around behaviour tree AIs and algorithms
 								designed to give us experience with AI in Unity.
 							</p>
 						</article>
@@ -90,7 +156,7 @@
 						<ul class="links">
 							<li>Email: kaylencowan.dev@gmail.com</li>
 							<li>Phone#: +1(613) - 297 - 1110</li>
-							<li>Address: Ottawa, ON, K2C 2T7</li>
+							<li>Address: Ottawa, ON, K2C 1G5</li>
 						</ul>
 					</div>
 				</div>
