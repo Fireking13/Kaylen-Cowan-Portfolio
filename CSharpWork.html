@@ -60,25 +60,25 @@
 
 							<div class="slideshow-container">
 								<div class="slide" style="display:block;">
-									<video width="100%" controls preload="none" playsinline>
+									<video width="100%" controls>
 										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/Water.mp4" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
 								</div>
 								<div class="slide">
-									<video width="100%" controls preload="none" playsinline>
+									<video width="100%" controls>
 										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/Turret.mp4" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
 								</div>
 								<div class="slide">
-									<video width="100%" controls preload="none" playsinline>
+									<video width="100%" controls>
 										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/Cube.mp4" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
 								</div>
 								<div class="slide">
-									<video width="100%" controls preload="none" playsinline>
+									<video width="100%" controls>
 										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/Tanks.mp4" type="video/mp4">
 										Your browser does not support the video tag.
 									</video>
@@ -93,28 +93,35 @@
 								const slides = document.querySelectorAll(".slide");
 
 								function changeSlide(n) {
-									// Pause current video
+									// Pause video in the current slide, if any
 									const currentVideo = slides[slideIndex].querySelector("video");
-									if (currentVideo) currentVideo.pause();
+									if (currentVideo) {
+										currentVideo.pause();
+									}
 
-									// Hide current slide
+									// Hide the current slide
 									slides[slideIndex].style.display = "none";
 
-									// Update index
+									// Calculate new slide index
 									slideIndex = (slideIndex + n + slides.length) % slides.length;
 
-									// Show new slide
+									// Show the new slide
 									slides[slideIndex].style.display = "block";
 
-									// Play new video if present
+									// Play video in the new slide, if any
 									const newVideo = slides[slideIndex].querySelector("video");
-									if (newVideo) newVideo.play();
+									if (newVideo) {
+										newVideo.play();
+									}
 								}
 
+								// Initialize the first slide on page load
 								document.addEventListener("DOMContentLoaded", () => {
 									slides[slideIndex].style.display = "block";
 									const firstVideo = slides[slideIndex].querySelector("video");
-									if (firstVideo) firstVideo.play();
+									if (firstVideo) {
+										firstVideo.play();
+									}
 								});
 							</script>
 
