@@ -60,28 +60,20 @@
 
 							<div class="slideshow-container">
 								<div class="slide" style="display:block;">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/Water.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
+									<!-- Embed YouTube video -->
+									<iframe width="100%" height="auto" src="https://www.youtube.com/embed/MlthaLhGlnQ?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 								</div>
 								<div class="slide">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/Turret.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
+									<!-- Embed YouTube video -->
+									<iframe width="100%" height="auto" src="https://www.youtube.com/embed/1zRUcUJCYXg?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 								</div>
 								<div class="slide">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/Cube.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
+									<!-- Embed YouTube video -->
+									<iframe width="100%" height="auto" src="https://www.youtube.com/embed/pRWqQqmyQJ0?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 								</div>
 								<div class="slide">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/Tanks.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
+									<!-- Embed YouTube video -->
+									<iframe width="100%" height="auto" src="https://www.youtube.com/embed/UgxJTtElOxg?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 								</div>
 
 								<div class="hover-left" onclick="changeSlide(-1)">&#10094;</div>
@@ -93,12 +85,6 @@
 								const slides = document.querySelectorAll(".slide");
 
 								function changeSlide(n) {
-									// Pause video in the current slide, if any
-									const currentVideo = slides[slideIndex].querySelector("video");
-									if (currentVideo) {
-										currentVideo.pause();
-									}
-
 									// Hide the current slide
 									slides[slideIndex].style.display = "none";
 
@@ -107,21 +93,11 @@
 
 									// Show the new slide
 									slides[slideIndex].style.display = "block";
-
-									// Play video in the new slide, if any
-									const newVideo = slides[slideIndex].querySelector("video");
-									if (newVideo) {
-										newVideo.play();
-									}
 								}
 
 								// Initialize the first slide on page load
 								document.addEventListener("DOMContentLoaded", () => {
 									slides[slideIndex].style.display = "block";
-									const firstVideo = slides[slideIndex].querySelector("video");
-									if (firstVideo) {
-										firstVideo.play();
-									}
 								});
 							</script>
 
