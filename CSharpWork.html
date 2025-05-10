@@ -61,29 +61,71 @@
 							<div class="slideshow-container">
 								<div class="slide" style="display:block;">
 									<!-- Embed YouTube video -->
-									<iframe src="https://www.youtube.com/embed/MlthaLhGlnQ?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+									<iframe id="video1" src="https://www.youtube.com/embed/MlthaLhGlnQ?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 								</div>
 								<div class="slide">
 									<!-- Embed YouTube video -->
-									<iframe src="https://www.youtube.com/embed/1zRUcUJCYXg?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+									<iframe id="video2" src="https://www.youtube.com/embed/1zRUcUJCYXg?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 								</div>
 								<div class="slide">
 									<!-- Embed YouTube video -->
-									<iframe src="https://www.youtube.com/embed/pRWqQqmyQJ0?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+									<iframe id="video3" src="https://www.youtube.com/embed/pRWqQqmyQJ0?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 								</div>
 								<div class="slide">
 									<!-- Embed YouTube video -->
-									<iframe src="https://www.youtube.com/embed/UgxJTtElOxg?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+									<iframe id="video4" src="https://www.youtube.com/embed/UgxJTtElOxg?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 								</div>
 
 								<div class="hover-left" onclick="changeSlide(-1)">&#10094;</div>
 								<div class="hover-right" onclick="changeSlide(1)">&#10095;</div>
 							</div>
 
+							<script src="https://www.youtube.com/iframe_api"></script>
 							<script>
 								let slideIndex = 0;
 								const slides = document.querySelectorAll(".slide");
 
+								// Player instances
+								let players = [];
+
+								// Create YouTube players
+								function onYouTubeIframeAPIReady() {
+									const iframeIds = ["video1", "video2", "video3", "video4"];
+									iframeIds.forEach(id => {
+										players.push(new YT.Player(id, {
+											events: {
+												'onReady': onPlayerReady,
+												'onStateChange': onPlayerStateChange
+											}
+										}));
+									});
+								}
+
+								// Event when the player is ready
+								function onPlayerReady(event) {
+									if (event.target.getIframe().id === "video1") {
+										event.target.playVideo();
+									}
+								}
+
+								// Event when the state of the player changes (pause videos when a new slide is shown)
+								function onPlayerStateChange(event) {
+									if (event.data === YT.PlayerState.PLAYING) {
+										// Pause other videos when the current slide is playing
+										pauseOtherVideos(event.target.getIframe().id);
+									}
+								}
+
+								// Pause all other videos except the current one
+								function pauseOtherVideos(currentVideoId) {
+									players.forEach(player => {
+										if (player.getIframe().id !== currentVideoId) {
+											player.pauseVideo();
+										}
+									});
+								}
+
+								// Change slide function
 								function changeSlide(n) {
 									// Hide the current slide
 									slides[slideIndex].style.display = "none";
@@ -93,6 +135,12 @@
 
 									// Show the new slide
 									slides[slideIndex].style.display = "block";
+
+									// Play the video in the new slide, if any
+									const currentVideo = players[slideIndex];
+									if (currentVideo) {
+										currentVideo.playVideo();
+									}
 								}
 
 								// Initialize the first slide on page load
@@ -100,8 +148,6 @@
 									slides[slideIndex].style.display = "block";
 								});
 							</script>
-
-							<h3>&nbsp;</h3>
 
 							<h3>Summary</h3>
 							<p>
