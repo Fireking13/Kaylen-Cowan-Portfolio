@@ -60,16 +60,12 @@
 
 						<div class="slideshow-container">
 							<div class="slide" style="display:block;">
-								<video width="100%" controls>
-									<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/DeepDiverVideo1.mp4" type="video/mp4">
-									Your browser does not support the video tag.
-								</video>
+								<!-- Embed YouTube video -->
+								<iframe id="video1" src="https://www.youtube.com/embed/n-Dx4seO7R0?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 							</div>
 							<div class="slide">
-								<video width="100%" controls>
-									<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/DeepDiverVideo2.mp4" type="video/mp4">
-									Your browser does not support the video tag.
-								</video>
+								<!-- Embed YouTube video -->
+								<iframe id="video2" src="https://www.youtube.com/embed/Xx3ohPguuOg?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 							</div>
 							<div class="slide"><img src="images/DeepDivers (1).png" alt="Chat App 2" /></div>
 							<div class="slide"><img src="images/DeepDivers (2).png" alt="Chat App 2" /></div>
@@ -86,35 +82,38 @@
 							const slides = document.querySelectorAll(".slide");
 
 							function changeSlide(n) {
-								// Pause video in the current slide, if any
-								const currentVideo = slides[slideIndex].querySelector("video");
-								if (currentVideo) {
-									currentVideo.pause();
+								// Hide current slide
+								const currentSlide = slides[slideIndex];
+								const currentIframe = currentSlide.querySelector("iframe");
+
+								// Reset iframe by reassigning its src
+								if (currentIframe) {
+									const src = currentIframe.src;
+									currentIframe.src = src; // this forces reload (restart)
 								}
 
-								// Hide the current slide
-								slides[slideIndex].style.display = "none";
+								currentSlide.style.display = "none";
 
-								// Calculate new slide index
+								// Calculate new index
 								slideIndex = (slideIndex + n + slides.length) % slides.length;
 
-								// Show the new slide
-								slides[slideIndex].style.display = "block";
+								// Show new slide
+								const newSlide = slides[slideIndex];
+								newSlide.style.display = "block";
 
-								// Play video in the new slide, if any
-								const newVideo = slides[slideIndex].querySelector("video");
-								if (newVideo) {
-									newVideo.play();
+								// Reload new iframe to ensure autoplay from start
+								const newIframe = newSlide.querySelector("iframe");
+								if (newIframe) {
+									let src = newIframe.src;
+									// Force autoplay=true in case it's not preserved
+									src = src.replace(/autoplay=0/, "autoplay=1");
+									newIframe.src = src;
 								}
 							}
 
-							// Initialize the first slide on page load
+							// Initialize first slide
 							document.addEventListener("DOMContentLoaded", () => {
 								slides[slideIndex].style.display = "block";
-								const firstVideo = slides[slideIndex].querySelector("video");
-								if (firstVideo) {
-									firstVideo.play();
-								}
 							});
 						</script>
 
