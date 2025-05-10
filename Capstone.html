@@ -59,48 +59,16 @@
 							</header>
 
 							<div class="slideshow-container">
-								<div class="slide" style="display:block;">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/IchorBurnsTrailer.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
-								</div>
-								<div class="slide">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/IchorBurnsTrailer_CN.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
-								</div>
-								<div class="slide">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/IchorBurns_SpellShowcase.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
-								</div>
-								<div class="slide">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/IchorBurns_StarchaserVA_EN.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
-								</div>
-								<div class="slide">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/IchorBurns_StarchaserVA_CN.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
-								</div>
-								<div class="slide">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/IchorBurns_SerafinaVA_EN.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
-								</div>
-								<div class="slide">
-									<video width="100%" controls>
-										<source src="https://f005.backblazeb2.com/file/KaylensPortfolio/IchorBurns_SerafinaVA_CN.mp4" type="video/mp4">
-										Your browser does not support the video tag.
-									</video>
-								</div>
+								<!-- Video slides (no iframe, just video ID) -->
+								<div class="slide" data-video-id="EArJmKPF2Sw"></div>
+								<div class="slide" data-video-id="FiLWxMCvPc0"></div>
+								<div class="slide" data-video-id="bQNXZeHY9bo"></div>
+								<div class="slide" data-video-id="2eKEHxx-48Y"></div>
+								<div class="slide" data-video-id="9XsBQQHBfoM"></div>
+								<div class="slide" data-video-id="6-doC6_CYUs"></div>
+								<div class="slide" data-video-id="ICW_HyjfpUw"></div>
+
+								<!-- Image slides -->
 								<div class="slide"><img src="images/Ichor Burns/Gameplay.png" alt="Chat App 1" /></div>
 								<div class="slide"><img src="images/Ichor Burns/SEQ_Berserk.0060.png" alt="Chat App 2" /></div>
 								<div class="slide"><img src="images/Ichor Burns/image1.png" alt="Chat App 2" /></div>
@@ -109,6 +77,7 @@
 								<div class="slide"><img src="images/Ichor Burns/image4.png" alt="Chat App 5" /></div>
 								<div class="slide"><img src="images/Ichor Burns/SEQ_Zone1Exposition.0020.png" alt="Chat App 6" /></div>
 
+								<!-- Navigation arrows -->
 								<div class="hover-left" onclick="changeSlide(-1)">&#10094;</div>
 								<div class="hover-right" onclick="changeSlide(1)">&#10095;</div>
 							</div>
@@ -117,36 +86,44 @@
 								let slideIndex = 0;
 								const slides = document.querySelectorAll(".slide");
 
-								function changeSlide(n) {
-									// Pause video in the current slide, if any
-									const currentVideo = slides[slideIndex].querySelector("video");
-									if (currentVideo) {
-										currentVideo.pause();
-									}
-
-									// Hide the current slide
-									slides[slideIndex].style.display = "none";
-
-									// Calculate new slide index
-									slideIndex = (slideIndex + n + slides.length) % slides.length;
-
-									// Show the new slide
-									slides[slideIndex].style.display = "block";
-
-									// Play video in the new slide, if any
-									const newVideo = slides[slideIndex].querySelector("video");
-									if (newVideo) {
-										newVideo.play();
+								function stopVideo(slide) {
+									const iframe = slide.querySelector("iframe");
+									if (iframe) {
+										iframe.remove(); // Completely remove iframe to stop video
 									}
 								}
 
-								// Initialize the first slide on page load
-								document.addEventListener("DOMContentLoaded", () => {
-									slides[slideIndex].style.display = "block";
-									const firstVideo = slides[slideIndex].querySelector("video");
-									if (firstVideo) {
-										firstVideo.play();
+								function startVideo(slide) {
+									const videoId = slide.dataset.videoId;
+									if (videoId) {
+										const iframe = document.createElement("iframe");
+										iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1`;
+										iframe.setAttribute("frameborder", "0");
+										iframe.setAttribute("allow", "autoplay; encrypted-media");
+										iframe.setAttribute("allowfullscreen", true);
+										slide.appendChild(iframe);
 									}
+								}
+
+								function changeSlide(n) {
+									// Stop and hide current slide
+									stopVideo(slides[slideIndex]);
+									slides[slideIndex].style.display = "none";
+
+									// Update index
+									slideIndex = (slideIndex + n + slides.length) % slides.length;
+
+									// Show and start new slide
+									const newSlide = slides[slideIndex];
+									newSlide.style.display = "block";
+									startVideo(newSlide);
+								}
+
+								// Initialize first slide
+								document.addEventListener("DOMContentLoaded", () => {
+									slides.forEach(slide => slide.style.display = "none");
+									slides[slideIndex].style.display = "block";
+									startVideo(slides[slideIndex]);
 								});
 							</script>
 

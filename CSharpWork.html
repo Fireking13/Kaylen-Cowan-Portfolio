@@ -59,23 +59,12 @@
 							</header>
 
 							<div class="slideshow-container">
-								<div class="slide" style="display:block;">
-									<!-- Embed YouTube video -->
-									<iframe id="video1" src="https://www.youtube.com/embed/MlthaLhGlnQ?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-								</div>
-								<div class="slide">
-									<!-- Embed YouTube video -->
-									<iframe id="video2" src="https://www.youtube.com/embed/1zRUcUJCYXg?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-								</div>
-								<div class="slide">
-									<!-- Embed YouTube video -->
-									<iframe id="video3" src="https://www.youtube.com/embed/pRWqQqmyQJ0?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-								</div>
-								<div class="slide">
-									<!-- Embed YouTube video -->
-									<iframe id="video4" src="https://www.youtube.com/embed/UgxJTtElOxg?autoplay=1&controls=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-								</div>
 
+								<div class="slide" data-video-id="MlthaLhGlnQ"></div>
+								<div class="slide" data-video-id="1zRUcUJCYXg"></div>
+								<div class="slide" data-video-id="pRWqQqmyQJ0"></div>
+								<div class="slide" data-video-id="UgxJTtElOxg"></div>
+	
 								<div class="hover-left" onclick="changeSlide(-1)">&#10094;</div>
 								<div class="hover-right" onclick="changeSlide(1)">&#10095;</div>
 							</div>
@@ -84,39 +73,44 @@
 								let slideIndex = 0;
 								const slides = document.querySelectorAll(".slide");
 
-								function changeSlide(n) {
-									// Hide current slide
-									const currentSlide = slides[slideIndex];
-									const currentIframe = currentSlide.querySelector("iframe");
-
-									// Reset iframe by reassigning its src
-									if (currentIframe) {
-										const src = currentIframe.src;
-										currentIframe.src = src; // this forces reload (restart)
+								function stopVideo(slide) {
+									const iframe = slide.querySelector("iframe");
+									if (iframe) {
+										iframe.remove(); // Completely remove iframe to stop video
 									}
+								}
 
-									currentSlide.style.display = "none";
+								function startVideo(slide) {
+									const videoId = slide.dataset.videoId;
+									if (videoId) {
+										const iframe = document.createElement("iframe");
+										iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1`;
+										iframe.setAttribute("frameborder", "0");
+										iframe.setAttribute("allow", "autoplay; encrypted-media");
+										iframe.setAttribute("allowfullscreen", true);
+										slide.appendChild(iframe);
+									}
+								}
 
-									// Calculate new index
+								function changeSlide(n) {
+									// Stop and hide current slide
+									stopVideo(slides[slideIndex]);
+									slides[slideIndex].style.display = "none";
+
+									// Update index
 									slideIndex = (slideIndex + n + slides.length) % slides.length;
 
-									// Show new slide
+									// Show and start new slide
 									const newSlide = slides[slideIndex];
 									newSlide.style.display = "block";
-
-									// Reload new iframe to ensure autoplay from start
-									const newIframe = newSlide.querySelector("iframe");
-									if (newIframe) {
-										let src = newIframe.src;
-										// Force autoplay=true in case it's not preserved
-										src = src.replace(/autoplay=0/, "autoplay=1");
-										newIframe.src = src;
-									}
+									startVideo(newSlide);
 								}
 
 								// Initialize first slide
 								document.addEventListener("DOMContentLoaded", () => {
+									slides.forEach(slide => slide.style.display = "none");
 									slides[slideIndex].style.display = "block";
+									startVideo(slides[slideIndex]);
 								});
 							</script>
 
