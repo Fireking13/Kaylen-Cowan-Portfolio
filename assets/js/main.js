@@ -36,12 +36,12 @@
 	// Nav.
 
 		// Bar.
-			$(
-				'<div id="titleBar">' +
-					'<a href="#navPanel" class="toggle"></a>' +
-					'<span class="title">' + $('#logo').html() + '</span>' +
-				'</div>'
-			)
+		$(
+			'<div id="titleBar">' +
+			'<a href="#navPanel" class="toggle"></a>' +
+			'<span class="title">Kaylen Cowan\'s Portfolio</span>' +
+			'</div>'
+		)
 				.appendTo($body);
 
 		// Panel.
